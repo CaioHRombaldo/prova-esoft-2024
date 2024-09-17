@@ -1,31 +1,42 @@
-from django.urls import reverse_lazy
-from django.views.generic.edit import CreateView, DeleteView, UpdateView
-from django.views.generic import ListView, DetailView
-from app.models import Curso
+from django.shortcuts import render, redirect
+from .forms import CursoForm
+from .models import Curso
 
 
-class CursoListView(ListView):
-    model = Curso
+def createCursoView(request):
+    form = CursoForm
+    if request.method == "POST":
+        form = CursoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("show_view")
+    template_name = "app/curso.html"
+    context = {"form": form}
+    return render(request, template_name, context)
 
-class CursoDetailView(DetailView):
-    queryset = Curso.objects.all()
+def showCursoView(request):
+    obj = Curso.objects.all()
+    template_name = "app/show.html"
+    context = {"obj": obj}
+    return render(request, template_name, context)
 
-    def get_object(self):
-        obj = super().get_object()
-        # obj.last_accessed = timezone.now()
-        obj.save()
-        return obj
+def updateCursoView(request, f_id):
+    obj = Curso.objects.get(id=f_id)
+    form = CursoForm(instance=obj)
+    if request.method == "POST":
+        form = CursoForm(request.POST, instance=obj)
+        if form.is_valid():
+            form.save()
+            return redirect("show_view")
+    template_name = "app/curso.html"
+    context = {"form": form}
+    return render(request, template_name, context)
 
-class CursoCreateView(CreateView):
-    model = Curso
-    fields = ["name"]
-
-
-class CursoUpdateView(UpdateView):
-    model = Curso
-    fields = ["name"]
-
-
-class CursoDeleteView(DeleteView):
-    model = Curso
-    success_url = reverse_lazy("curso-list")
+def deleteCursoView(request, f_id):
+    obj = Curso.objects.get(id = f_id)
+    if request.method == "POST":
+        obj.delete()
+        return redirect("show_view")
+    template_name = "app/confirmation.html"
+    context = {"obj": obj}
+    return render(request, template_name, context)

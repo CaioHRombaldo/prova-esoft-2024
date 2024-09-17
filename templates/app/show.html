@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+   <title>Show Curso</title>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+<h1 class="text-center mt-3 mb-3">Show Curso</h1>
+<table class="table table-dark table-bordered">
+   <thead>
+     <tr>
+       <th scope="col">Nome</th>
+       <th scope="col">Carga Horária</th>
+       <th scope="col">Data Inicio</th>
+       <th scope="col">Criação do Curso</th>
+     </tr>
+   </thead>
+   <tbody>
+   {% for i in obj %}
+     <tr>
+       <td>{{i.nome}}</td>
+       <td>{{i.cargaHoraria}}</td>
+       <td>{{i.dataInicio}}</td>
+       <td>{{i.created_at}}</td>
+       <td>
+           <button class="btn btn-warning"><a href="{% url 'update_view' i.id %}">Update</a></button>&nbsp;&nbsp;
+           <button class="btn btn-danger"><a href="{% url 'delete_view' i.id %}">Delete</a></button>
+       </td>
+     </tr>
+   {% endfor %}
+   </tbody>
+ </table>
+</div>
+{% endblock %}
