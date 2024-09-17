@@ -22,6 +22,15 @@ class Curso(BaseModel):
         item.curso = None
         item.save()
 
+    def getDisciplinas(self):
+        return [x.nome for x in self.disciplina_set.all()]
+    
+    def getDisciplinasFormatted(self):
+        disciplinas = ''
+        for disciplina in self.getDisciplinas():
+            disciplinas += f'{disciplina}, '
+        return disciplinas[:-2]
+    
     def __str__(self) -> str:
         return f'{self.nome}'
     

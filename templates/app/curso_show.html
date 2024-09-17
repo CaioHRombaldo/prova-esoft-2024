@@ -1,19 +1,20 @@
 {% extends 'layout.html' %}
 
 {% block title %}
-   <title>Show Curso</title>
+   <title>Visualização</title>
 {% endblock %}
 
 {% block content %}
 <div class="container">
-<h1 class="text-center mt-3 mb-3">Show Curso</h1>
+<h1 class="text-center mt-3 mb-3">Visualização de Cursos</h1>
 <table class="table table-dark table-bordered">
    <thead>
      <tr>
        <th scope="col">Nome</th>
        <th scope="col">Carga Horária</th>
        <th scope="col">Data Inicio</th>
-       <th scope="col">Criação do Curso</th>
+       <th scope="col">Data da Criação</th>
+       <th scope="col">Última atualização</th>
      </tr>
    </thead>
    <tbody>
@@ -23,9 +24,10 @@
        <td>{{i.cargaHoraria}}</td>
        <td>{{i.dataInicio}}</td>
        <td>{{i.created_at}}</td>
+       <td>{{i.updated_at}}</td>
        <td>
-           <button class="btn btn-warning"><a href="{% url 'update_view' i.id %}">Update</a></button>&nbsp;&nbsp;
-           <button class="btn btn-danger"><a href="{% url 'delete_view' i.id %}">Delete</a></button>
+           <button class="btn btn-warning"><a href="{% url 'curso_update_view' i.id %}">Atualizar</a></button>&nbsp;&nbsp;
+           <button class="btn btn-danger"><a href="{% url 'curso_delete_view' i.id %}">Remover</a></button>
        </td>
      </tr>
    {% endfor %}

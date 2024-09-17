@@ -2,16 +2,16 @@
 {% load crispy_forms_tags %}
 
 {% block title %}
-    <title>Página de criação de Curso</title>
+    <title>Página de criação de Disciplina</title>
 {% endblock %} 
 
 {% block content %} 
-    <h1 class="text-center mt-3 mb-3">Criar Curso</h1>
+    <h1 class="text-center mt-3 mb-3">Criar Disciplina</h1>
     <div class="container">
         <form method="post" class="jumbotron">
             {% csrf_token %}
             {{form|crispy}}
-            <input type="submit" value="Adicionar Curso" class="btn btn-success">
+            <input type="submit" value="Adicionar Disciplina" class="btn btn-success">
         </form>
     </div>
 {% endblock %}

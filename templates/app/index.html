@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+   <title>Visualização</title>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+<h1 class="text-center mt-3 mb-3">Visualização</h1>
+<table class="table table-dark table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Nome</th>
+      <th scope="col">Carga Horária</th>
+      <th scope="col">Data Inicio</th>
+      <th scope="col">Criação do Curso</th>
+      <th scope="col">Disciplinas</th>
+    </tr>
+  </thead>
+   <tbody>
+   {% for i in cursos %}
+     <tr>
+       <td>{{i.nome}}</td>
+       <td>{{i.cargaHoraria}}</td>
+       <td>{{i.dataInicio}}</td>
+       <td>{{i.created_at}}</td>
+       <td>{{i.getDisciplinasFormatted}}</td>
+       <td>
+           <button class="btn btn-warning"><a href="{% url 'disciplina_update_view' i.id %}">Atualizar</a></button>&nbsp;&nbsp;
+           <button class="btn btn-danger"><a href="{% url 'disciplina_delete_view' i.id %}">Remover</a></button>
+       </td>
+     </tr>
+   {% endfor %}
+   </tbody>
+ </table>
+</div>
+{% endblock %}
