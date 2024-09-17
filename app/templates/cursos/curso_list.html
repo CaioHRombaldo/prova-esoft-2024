@@ -1,0 +1,10 @@
+<!-- {% extends "base.html" %} -->
+
+{% block content %}
+    <h2>Cursos</h2>
+    <ul>
+        {% for curso in object_list %}
+            <li>{{ curso.nome }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
