@@ -15,6 +15,7 @@
        <th scope="col">Data Inicio</th>
        <th scope="col">Data da Criação</th>
        <th scope="col">Última atualização</th>
+       <th scope="col">Disciplinas</th>
      </tr>
    </thead>
    <tbody>
@@ -25,6 +26,7 @@
        <td>{{i.dataInicio}}</td>
        <td>{{i.created_at}}</td>
        <td>{{i.updated_at}}</td>
+       <td>{{i.getDisciplinasFormatted}}</td>
        <td>
            <button class="btn btn-warning"><a href="{% url 'curso_update_view' i.id %}">Atualizar</a></button>&nbsp;&nbsp;
            <button class="btn btn-danger"><a href="{% url 'curso_delete_view' i.id %}">Remover</a></button>

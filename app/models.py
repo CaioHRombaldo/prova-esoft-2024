@@ -39,7 +39,7 @@ class Curso(BaseModel):
         
 class Disciplina(BaseModel):
     nome = models.CharField('Nome', max_length=100)
-    curso = models.ForeignKey(Curso, on_delete=models.PROTECT, null=True, blank=True)
+    curso = models.ForeignKey(Curso, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self) -> str:
         if self.curso:
